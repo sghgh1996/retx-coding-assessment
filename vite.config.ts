@@ -5,15 +5,17 @@ import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
-import UnoCSS from 'unocss/vite'
 import VueMacros from 'unplugin-vue-macros/vite'
 import VueRouter from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
+import { quasar, transformAssetUrls } from '@quasar/vite-plugin'
 
 export default defineConfig({
   resolve: {
     alias: {
       '~/': `${path.resolve(__dirname, 'src')}/`,
+      '~vars': `${path.resolve(__dirname, 'src')}/styles/vars.scss`,
+      '~utilities': `${path.resolve(__dirname, 'src')}/styles/utilities.scss`,
     },
   },
   plugins: [
@@ -26,6 +28,7 @@ export default defineConfig({
             propsDestructure: true,
             defineModel: true,
           },
+          template: { transformAssetUrls },
         }),
       },
     }),
@@ -56,9 +59,11 @@ export default defineConfig({
       dts: true,
     }),
 
-    // https://github.com/antfu/unocss
-    // see uno.config.ts for config
-    UnoCSS(),
+    // @quasar/plugin-vite options list:
+    // https://github.com/quasarframework/quasar/blob/dev/vite-plugin/index.d.ts
+    quasar({
+      sassVariables: 'src/styles/quasar-variables.scss'
+    })
   ],
 
   // https://github.com/vitest-dev/vitest

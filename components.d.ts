@@ -7,10 +7,13 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AuthorInformation: typeof import('./src/components/AuthorInformation/index.vue')['default']
+    Banner: typeof import('./src/components/Banner/index.vue')['default']
+    Card: typeof import('./src/components/Card/index.vue')['default']
+    IconArrowRight: typeof import('./src/components/icons/IconArrowRight.vue')['default']
+    Label: typeof import('./src/components/Label/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    TheCounter: typeof import('./src/components/TheCounter.vue')['default']
-    TheFooter: typeof import('./src/components/TheFooter.vue')['default']
-    TheInput: typeof import('./src/components/TheInput.vue')['default']
+    SupportBanner: typeof import('./src/components/SupportBanner/index.vue')['default']
   }
 }
